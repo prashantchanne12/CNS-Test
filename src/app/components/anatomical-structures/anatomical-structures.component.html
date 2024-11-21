@@ -18,7 +18,9 @@
           </div>
           <div class="structure-field">
             <label>ID:</label>
-            <div class="field-value">{{ structure.id }}</div>
+            <div class="field-value">
+              {{ structure.id ? structure.id : "Not Found" }}
+            </div>
           </div>
         </mat-card-content>
       </mat-card>
