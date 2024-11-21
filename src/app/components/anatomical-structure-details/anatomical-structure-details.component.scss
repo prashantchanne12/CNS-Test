@@ -1,0 +1,38 @@
+.dialog-container {
+  padding: 1rem;
+  max-width: 600px;
+  min-width: 320px;
+
+  .truncated-description {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 4.5em;
+  }
+
+  .close-button {
+    margin-left: auto;
+  }
+
+  mat-card-header {
+    margin-bottom: 1rem;
+  }
+
+  mat-list-item {
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .error-card {
+    text-align: center;
+    padding: 2rem;
+
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      margin-bottom: 1rem;
+    }
+  }
+}
