@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { AnatomicalStructureService } from '../../services/anatomical-structure.service';
 import { AnatomicalStructureDetailsService } from '../../services/anatomical-structure-details.service';
 import { Structure } from '../../models/anatomical-structure-model';
@@ -23,9 +23,24 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   ],
 })
 export class AnatomicalStructuresComponent implements OnInit {
-  uniqueStructures: Structure[] = [];
-  selectedStructureDetails?: StructureDetails;
-  isLoading = true;
+  structures = signal<Structure[]>([]);
+  selectedDetails = signal<StructureDetails | undefined>(undefined);
+  isLoading = signal(true);
+
+  uniqueStructures = computed(() => {
+    const structuresArray = this.structures();
+    const uniqueNames = new Set(
+      structuresArray
+        .filter((structure): structure is Structure => structure?.name != null)
+        .map((structure) => structure.name)
+    );
+
+    return Array.from(uniqueNames)
+      .map(
+        (name) => structuresArray.find((structure) => structure.name === name)!
+      )
+      .filter((structure): structure is Structure => structure !== undefined);
+  });
 
   constructor(
     private anatomicalStructureService: AnatomicalStructureService,
@@ -34,24 +49,16 @@ export class AnatomicalStructuresComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.anatomicalStructureService.fetchData().subscribe({
+    this.anatomicalStructureService.fetchStructures().subscribe({
       next: (data) => {
         const structures: Structure[] = data.data
           .map((row: any) => row.anatomical_structures)
           .flat();
 
-        const uniqueNames = new Set(
-          structures
-            .filter((s): s is Structure => s?.name != null)
-            .map((s) => s.name)
-        );
-
-        this.uniqueStructures = Array.from(uniqueNames)
-          .map((name) => structures.find((s) => s.name === name)!)
-          .filter((s): s is Structure => s !== undefined);
+        this.structures.set(structures);
       },
       complete: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
       },
     });
   }
@@ -76,12 +83,12 @@ export class AnatomicalStructuresComponent implements OnInit {
       panelClass: 'custom-dialog-container',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(() => {
+      this.selectedDetails.set(undefined);
     });
   }
 
   closeDetails() {
-    this.selectedStructureDetails = undefined;
+    this.selectedDetails.set(undefined);
   }
 }

@@ -1,14 +1,14 @@
 <div class="container">
   <h1 class="title">Anatomical Structures Data</h1>
 
-  @if (isLoading) {
+  @if (isLoading()) {
   <div class="progress-container">
     <mat-progress-bar mode="indeterminate" color="primary" class="loading-bar">
     </mat-progress-bar>
   </div>
   } @else {
   <div class="structures-grid">
-    @for (structure of uniqueStructures; track structure.id) {
+    @for (structure of uniqueStructures(); track structure.id) {
     <div class="structure-card">
       <mat-card class="modern-card">
         <mat-card-content>
