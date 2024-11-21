@@ -18,6 +18,17 @@ $transition: all 0.3s ease;
     text-align: center;
     letter-spacing: 0.5px;
   }
+
+  .progress-container {
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 5rem;
+
+    .loading-bar {
+      border-radius: 4px;
+    }
+  }
 }
 
 .structures-grid {

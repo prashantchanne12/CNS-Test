@@ -1,6 +1,12 @@
 <div class="container">
   <h1 class="title">Anatomical Structures Data</h1>
 
+  @if (isLoading) {
+  <div class="progress-container">
+    <mat-progress-bar mode="indeterminate" color="primary" class="loading-bar">
+    </mat-progress-bar>
+  </div>
+  } @else {
   <div class="structures-grid">
     @for (structure of uniqueStructures; track structure.id) {
     <div class="structure-card">
@@ -27,4 +33,5 @@
     </div>
     }
   </div>
+  }
 </div>
