@@ -4,10 +4,10 @@
   <div class="structures-grid">
     @for (structure of uniqueStructures; track structure.id) {
     <div class="structure-card">
-      <mat-card>
+      <mat-card class="modern-card">
         <mat-card-content>
           <div class="structure-field">
-            <label>Name:</label>
+            <span class="label">Name</span>
             <div
               class="field-value clickable"
               (click)="onStructureClick(structure)"
@@ -17,8 +17,8 @@
             </div>
           </div>
           <div class="structure-field">
-            <label>ID:</label>
-            <div class="field-value">
+            <span class="label">ID</span>
+            <div class="field-value id-value">
               {{ structure.id ? structure.id : "Not Found" }}
             </div>
           </div>
