@@ -17,6 +17,7 @@ import { AnatomicalStructureDetailsComponent } from '../anatomical-structure-det
 export class AnatomicalStructuresComponent implements OnInit {
   uniqueStructures: Structure[] = [];
   selectedStructureDetails?: StructureDetails;
+  isLoading = true;
 
   constructor(
     private anatomicalStructureService: AnatomicalStructureService,
@@ -25,20 +26,25 @@ export class AnatomicalStructuresComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.anatomicalStructureService.fetchData().subscribe((data) => {
-      const structures: Structure[] = data.data
-        .map((row: any) => row.anatomical_structures)
-        .flat();
+    this.anatomicalStructureService.fetchData().subscribe({
+      next: (data) => {
+        const structures: Structure[] = data.data
+          .map((row: any) => row.anatomical_structures)
+          .flat();
 
-      const uniqueNames = new Set(
-        structures
-          .filter((s): s is Structure => s?.name != null)
-          .map((s) => s.name)
-      );
+        const uniqueNames = new Set(
+          structures
+            .filter((s): s is Structure => s?.name != null)
+            .map((s) => s.name)
+        );
 
-      this.uniqueStructures = Array.from(uniqueNames)
-        .map((name) => structures.find((s) => s.name === name)!)
-        .filter((s): s is Structure => s !== undefined);
+        this.uniqueStructures = Array.from(uniqueNames)
+          .map((name) => structures.find((s) => s.name === name)!)
+          .filter((s): s is Structure => s !== undefined);
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
     });
   }
 
@@ -56,8 +62,10 @@ export class AnatomicalStructuresComponent implements OnInit {
 
   openDetailsDialog(details?: StructureDetails) {
     const dialogRef = this.dialog.open(AnatomicalStructureDetailsComponent, {
-      width: '500px',
+      width: '600px',
+      maxWidth: '90vw',
       data: details,
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
