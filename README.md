@@ -1,59 +1,41 @@
-# Cns
+# Implementation Overview
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+I approached this assignment methodically, breaking it down into two main phases as specified in the requirements.
 
-## Development server
+## Phase I
 
-To start a local development server, run:
+- Set up a new Angular 18+ project with Angular Material UI.
+- Created TypeScript interfaces for the API response structure.
+- Implemented a service to fetch anatomical structures data.
+- Built a responsive grid layout to display unique structures.
+- Utilized Angular Signals for state management.
+- Added loading states for better UX.
 
-```bash
-ng serve
-```
+## Phase II
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Created a service for fetching structure details.
+- Implemented modal dialog using Angular Material.
+- Added error handling for structures without IDs.
+- Enhanced the UI with smooth transitions and animations.
+- Ensured proper data flow between components
 
-## Code scaffolding
+## Technical Highlights.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Used Angular Material components for consistent design.
+- Implemented proper TypeScript types throughout
+  Created reusable services for data fetching.
+- Utilized modern Angular features like signals
+- Maintained clean code structure with meaningful variable names.
+- Made frequent commits with descriptive messages
+  Challenges & Solutions.
+- Handled edge cases for structures without IDs.
+- Managed asynchronous data flow effectively.
+- Implemented proper error handling.
+- Ensured responsive design across different screen sizes.
 
-```bash
-ng generate component component-name
-```
+## Areas for Improvement
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Could add unit tests
+- Could implement caching for API responses
+- Could enhance accessibility features
+- Could add loading states for modal content
