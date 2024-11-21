@@ -1,8 +1,13 @@
-# Implementation Overview
+#### Website link - https://prashantchanne12.github.io/CNS-Test/
+
+---
+
+
+## Implementation Overview
 
 I approached this assignment methodically, breaking it down into two main phases as specified in the requirements.
 
-## Phase I
+### Phase I
 
 - Set up a new Angular 18+ project with Angular Material UI.
 - Created TypeScript interfaces for the API response structure.
@@ -11,7 +16,7 @@ I approached this assignment methodically, breaking it down into two main phases
 - Utilized Angular Signals for state management.
 - Added loading states for better UX.
 
-## Phase II
+### Phase II
 
 - Created a service for fetching structure details.
 - Implemented modal dialog using Angular Material.
@@ -19,7 +24,7 @@ I approached this assignment methodically, breaking it down into two main phases
 - Enhanced the UI with smooth transitions and animations.
 - Ensured proper data flow between components
 
-## Technical Highlights.
+### Technical Highlights.
 
 - Used Angular Material components for consistent design.
 - Implemented proper TypeScript types throughout
@@ -33,7 +38,7 @@ I approached this assignment methodically, breaking it down into two main phases
 - Implemented proper error handling.
 - Ensured responsive design across different screen sizes.
 
-## Areas for Improvement
+### Areas for Improvement
 
 - Could add unit tests
 - Could implement caching for API responses
