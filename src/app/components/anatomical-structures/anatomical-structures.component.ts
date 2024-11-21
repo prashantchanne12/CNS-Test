@@ -8,11 +8,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { AnatomicalStructureDetailsComponent } from '../anatomical-structure-details/anatomical-structure-details.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @Component({
   selector: 'app-anatomical-structures',
   templateUrl: './anatomical-structures.component.html',
   styleUrls: ['./anatomical-structures.component.scss'],
-  imports: [CommonModule, MatCardModule, MatIconModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatIconModule,
+    MatDialogModule,
+    MatProgressBarModule,
+  ],
 })
 export class AnatomicalStructuresComponent implements OnInit {
   uniqueStructures: Structure[] = [];
